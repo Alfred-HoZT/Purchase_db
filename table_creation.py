@@ -52,10 +52,6 @@ c = conn.cursor()
 
 def creation():
     create_list = [create_supplier, create_product, create_catalogue, create_purchased]
-    # with sqlite3.connect("purchases.db") as conn:
-    #     c = conn.cursor()
-    #     for action in create_list:
-    #         c.execute(action)
     for action in create_list:
         c.execute(action)
         conn.commit()
