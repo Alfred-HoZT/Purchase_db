@@ -1,5 +1,6 @@
 import sqlite3
 
+# deletes existing table for new (and empty) ones to be created
 def delete():
     tables = ['product', 'supplier', 'catalogue', 'purchased']
     with sqlite3.connect("purchases.db") as conn:
@@ -7,8 +8,10 @@ def delete():
         for tab in tables:
             c.execute(f"DROP TABLE IF EXISTS {tab}")
 
+# calls the function
 delete()
 
+# Commands to be executed by sqlite3
 create_supplier  = """CREATE TABLE IF NOT EXISTS supplier (
                     supplier_id INTEGER,
                     name VARCHAR(20),
@@ -50,10 +53,12 @@ create_purchased = """CREATE TABLE IF NOT EXISTS purchased (
 conn = sqlite3.connect("purchases.db")
 c = conn.cursor()
 
+# Loops through string commands and executes them in sequence (important due to use of foreign keys)
 def creation():
     create_list = [create_supplier, create_product, create_catalogue, create_purchased]
     for action in create_list:
         c.execute(action)
         conn.commit()
 
+# calls the function
 creation()
