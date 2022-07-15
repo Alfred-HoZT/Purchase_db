@@ -80,5 +80,5 @@ Uncomment -- restart("Yes") -- if you want to restart the database,
 or -- restart("No") -- if you want to continue with what you have.
 """
 
-# restart("Yes")
+restart("Yes")
 # restart("No")
